@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - Two Stars Engineering & Construction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* --- Copying Design Tokens from main page --- */
+    :root {
+      --cream: #f8f9fa;
+      --charcoal: #0A2342;
+      --rust: #b58d53;
+      --rust-light: #d1a865;
+      --gray: #5a6b7c;
+      --border: #d1d5db;
+      --font-display: 'Oswald', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --max-width: 1200px;
+      --radius: 4px;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 130px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-body); background: var(--cream); color: var(--charcoal); line-height: 1.6; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.02em; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+    
+    /* --- Buttons & Navbar --- */
+    .btn { display: inline-block; padding: 12px 24px; font-family: var(--font-display); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border-radius: var(--radius); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer; border: none; }
+    .btn-primary { background: var(--rust); color: #fff; box-shadow: 0 4px 6px rgba(181, 141, 83, 0.2); }
+    .btn-primary:hover { background: var(--rust-light); transform: translateY(-3px); box-shadow: 0 8px 15px rgba(181, 141, 83, 0.4); }
+
+    .navbar { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; padding: 0; }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; min-height: 110px; }
+    .nav-logo img { height: 110px; width: auto; display: block; transition: transform 0.3s ease; }
+    .nav-logo:hover img { transform: scale(1.02); }
+    .nav-links { display: flex; align-items: center; gap: 40px; }
+    .nav-links a:not(.btn) { font-weight: 500; font-size: 1rem; position: relative; padding-bottom: 4px; transition: color 0.3s ease; }
+    .nav-links a:not(.btn)::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: var(--rust); transition: width 0.3s ease; }
+    .nav-links a:not(.btn):hover { color: var(--rust); }
+    .nav-links a:not(.btn):hover::after { width: 100%; }
+    .nav-btn { padding: 12px 28px; font-size: 0.85rem; }
+
+    /* --- Page Header --- */
+    .page-header { background: linear-gradient(135deg, var(--charcoal) 0%, #11345c 100%); color: var(--cream); padding: 80px 0; text-align: center; }
+    .page-header h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 16px; }
+
+    /* --- Legal Content Area --- */
+    .legal-section { padding: 80px 0; background: #fff; }
+    .legal-content { max-width: 850px; margin: 0 auto; }
+    .legal-content h2 { font-size: 1.8rem; margin: 40px 0 16px 0; color: var(--charcoal); border-bottom: 2px solid var(--border); padding-bottom: 8px; }
+    .legal-content h3 { font-size: 1.3rem; margin: 24px 0 12px 0; color: var(--charcoal); }
+    .legal-content p { margin-bottom: 16px; color: #333; font-size: 1.05rem; }
+    .legal-content ul { margin-bottom: 16px; padding-left: 24px; color: #333; font-size: 1.05rem; }
+    .legal-content li { margin-bottom: 8px; }
+    .legal-content strong { color: var(--charcoal); }
+
+    /* --- Footer --- */
+    .footer { padding: 80px 0 30px; background: var(--cream); border-top: 1px solid var(--border); font-size: 0.95rem; color: var(--gray); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 50px; }
+    .footer-brand img { height: 140px; margin-bottom: 20px; transition: filter 0.3s ease; }
+    .footer-brand img:hover { filter: brightness(0.8); }
+    .footer-brand h4 { color: var(--charcoal); font-size: 1.2rem; margin-bottom: 12px; }
+    .footer-brand p { margin-bottom: 8px; }
+    .footer-links h4 { color: var(--charcoal); font-size: 1.1rem; margin-bottom: 20px; }
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a { transition: color 0.3s ease, padding-left 0.3s ease; display: inline-block; }
+    .footer-links a:hover { color: var(--rust); padding-left: 5px; }
+    .footer-bottom { text-align: center; padding-top: 24px; border-top: 1px solid var(--border); font-size: 0.85rem; }
+
+    /* --- Scroll Top --- */
+    #scrollTopBtn { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: var(--rust); color: #fff; border: none; border-radius: 50%; font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); opacity: 0; visibility: hidden; z-index: 999; }
+    #scrollTopBtn.show { opacity: 1; visibility: visible; }
+    #scrollTopBtn:hover { background-color: var(--charcoal); transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+
+    @media (max-width: 900px) {
+      html { scroll-padding-top: 100px; } 
+      .nav-container { min-height: 80px; }
+      .nav-logo img { height: 80px; }
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    }
+    @media (max-width: 640px) {
+      .legal-section { padding: 50px 0; }
+      .footer-brand img { height: 110px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Two Stars Engineering and Construction Company Logo" />
+      </a>
+      <nav class="nav-links">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#contact" class="btn btn-primary nav-btn">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Privacy Policy</h1>
+      <p>Last Updated: October 2023</p>
+    </div>
+  </section>
+
+  <!-- LEGAL CONTENT -->
+  <section class="legal-section">
+    <div class="container legal-content">
+      <p>At <strong>Two Stars Engineering & Construction Company Pvt. Ltd.</strong> ("we," "us," or "our"), accessible from our website, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by us and how we use it.</p>
+      <p>This policy is compliant with the <strong>Information Technology Act, 2000</strong>, the <strong>Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011</strong>, and the <strong>Digital Personal Data Protection Act, 2023 (DPDP Act)</strong> of India.</p>
+
+      <h2>1. Information We Collect</h2>
+      <p>We only collect information that you voluntarily provide to us through our "Contact Us" form. This information includes:</p>
+      <ul>
+        <li><strong>Personal Identification Information:</strong> Your name, email address, and phone number.</li>
+        <li><strong>Project Information:</strong> Details about the service you are interested in and the message/scope of work you provide.</li>
+      </ul>
+      <p>We do <strong>not</strong> collect any Sensitive Personal Data or Information (SPDI) such as passwords, financial information, health data, or biometric data.</p>
+
+      <h2>2. Cookies and Tracking Technologies</h2>
+      <p><strong>We do not use cookies for tracking purposes.</strong> We do not employ any third-party analytics, tracking pixels, or behavioral advertising technologies on our website. Your browsing activity on this site is completely private.</p>
+
+      <h2>3. How We Use Your Information</h2>
+      <p>The information you provide through the contact form is used strictly for the following purposes:</p>
+      <ul>
+        <li>To respond to your inquiries and provide estimated quotes.</li>
+        <li>To communicate with you regarding your specific project requirements.</li>
+        <li>To maintain internal records of business communications.</li>
+      </ul>
+      <p>We will not use your information for marketing purposes unless you explicitly consent to it.</p>
+
+      <h2>4. Third-Party Data Processing</h2>
+      <p>Our contact form is processed using a third-party service called <strong>FormSubmit</strong>. When you submit the form, your data is routed through their servers to reach our email inbox. We recommend reviewing FormSubmit's privacy policy to understand how they handle data in transit. We do not sell, rent, or trade your personal information to any other third parties.</p>
+
+      <h2>5. Data Security</h2>
+      <p>We implement reasonable security practices and procedures to protect your personal information from unauthorized access, alteration, or disclosure, as required by Indian law. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.</p>
+
+      <h2>6. Your Rights (Under DPDP Act, 2023)</h2>
+      <p>As a Data Principal under the DPDP Act, you have the right to:</p>
+      <ul>
+        <li>Request access to the personal data we hold about you.</li>
+        <li>Request correction of inaccurate or incomplete data.</li>
+        <li>Request erasure of your data (subject to legal retention requirements).</li>
+        <li>Withdraw consent for us to process your data.</li>
+      </ul>
+      <p>To exercise these rights, please contact us using the details below.</p>
+
+      <h2>7. Grievance Officer</h2>
+      <p>In accordance with the Information Technology Rules, 2021, the name and contact details of the Grievance Officer are provided below:</p>
+      <p>
+        <strong>Name:</strong> [Insert Name of Grievance Officer]<br>
+        <strong>Email:</strong> aabdullahzeeshan77@gmail.com<br>
+        <strong>Phone:</strong> (555) 012-3456<br>
+        <strong>Address:</strong> 123 Industrial Way, Region, India.
+      </p>
+
+      <h2>8. Changes to This Privacy Policy</h2>
+      <p>We may update our Privacy Policy from time to time. Thus, we advise you to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="logo.png" alt="Two Stars Logo" />
+          <h4>Two Stars Engineering & Construction Company Pvt. Ltd.</h4>
+          <p>Building your vision, shaping the future.</p>
+          <p>123 Industrial Way · Region · (555) 012‑3456</p>
+          <p>Email: info@twostarsengineering.com</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html">Terms of Service</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Two Stars Engineering & Construction Company Pvt. Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCROLL TO TOP BUTTON -->
+  <button id="scrollTopBtn" title="Go to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.classList.add("show");
+      } else {
+        scrollTopBtn.classList.remove("show");
+      }
+    };
+    scrollTopBtn.addEventListener("click", function() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>

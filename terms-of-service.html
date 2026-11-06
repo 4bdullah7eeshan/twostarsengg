@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service - Two Stars Engineering & Construction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* --- Same Styling Tokens --- */
+    :root {
+      --cream: #f8f9fa;
+      --charcoal: #0A2342;
+      --rust: #b58d53;
+      --rust-light: #d1a865;
+      --gray: #5a6b7c;
+      --border: #d1d5db;
+      --font-display: 'Oswald', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --max-width: 1200px;
+      --radius: 4px;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 130px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-body); background: var(--cream); color: var(--charcoal); line-height: 1.6; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.02em; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+    
+    /* --- Buttons & Navbar --- */
+    .btn { display: inline-block; padding: 12px 24px; font-family: var(--font-display); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border-radius: var(--radius); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer; border: none; }
+    .btn-primary { background: var(--rust); color: #fff; box-shadow: 0 4px 6px rgba(181, 141, 83, 0.2); }
+    .btn-primary:hover { background: var(--rust-light); transform: translateY(-3px); box-shadow: 0 8px 15px rgba(181, 141, 83, 0.4); }
+
+    .navbar { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; padding: 0; }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; min-height: 110px; }
+    .nav-logo img { height: 110px; width: auto; display: block; transition: transform 0.3s ease; }
+    .nav-logo:hover img { transform: scale(1.02); }
+    .nav-links { display: flex; align-items: center; gap: 40px; }
+    .nav-links a:not(.btn) { font-weight: 500; font-size: 1rem; position: relative; padding-bottom: 4px; transition: color 0.3s ease; }
+    .nav-links a:not(.btn)::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: var(--rust); transition: width 0.3s ease; }
+    .nav-links a:not(.btn):hover { color: var(--rust); }
+    .nav-links a:not(.btn):hover::after { width: 100%; }
+    .nav-btn { padding: 12px 28px; font-size: 0.85rem; }
+
+    /* --- Page Header --- */
+    .page-header { background: linear-gradient(135deg, var(--charcoal) 0%, #11345c 100%); color: var(--cream); padding: 80px 0; text-align: center; }
+    .page-header h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 16px; }
+
+    /* --- Legal Content Area --- */
+    .legal-section { padding: 80px 0; background: #fff; }
+    .legal-content { max-width: 850px; margin: 0 auto; }
+    .legal-content h2 { font-size: 1.8rem; margin: 40px 0 16px 0; color: var(--charcoal); border-bottom: 2px solid var(--border); padding-bottom: 8px; }
+    .legal-content p { margin-bottom: 16px; color: #333; font-size: 1.05rem; }
+    .legal-content ul { margin-bottom: 16px; padding-left: 24px; color: #333; font-size: 1.05rem; }
+    .legal-content li { margin-bottom: 8px; }
+    .legal-content strong { color: var(--charcoal); }
+
+    /* --- Footer --- */
+    .footer { padding: 80px 0 30px; background: var(--cream); border-top: 1px solid var(--border); font-size: 0.95rem; color: var(--gray); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 50px; }
+    .footer-brand img { height: 140px; margin-bottom: 20px; transition: filter 0.3s ease; }
+    .footer-brand img:hover { filter: brightness(0.8); }
+    .footer-brand h4 { color: var(--charcoal); font-size: 1.2rem; margin-bottom: 12px; }
+    .footer-brand p { margin-bottom: 8px; }
+    .footer-links h4 { color: var(--charcoal); font-size: 1.1rem; margin-bottom: 20px; }
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a { transition: color 0.3s ease, padding-left 0.3s ease; display: inline-block; }
+    .footer-links a:hover { color: var(--rust); padding-left: 5px; }
+    .footer-bottom { text-align: center; padding-top: 24px; border-top: 1px solid var(--border); font-size: 0.85rem; }
+
+    /* --- Scroll Top --- */
+    #scrollTopBtn { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: var(--rust); color: #fff; border: none; border-radius: 50%; font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); opacity: 0; visibility: hidden; z-index: 999; }
+    #scrollTopBtn.show { opacity: 1; visibility: visible; }
+    #scrollTopBtn:hover { background-color: var(--charcoal); transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+
+    @media (max-width: 900px) {
+      html { scroll-padding-top: 100px; } 
+      .nav-container { min-height: 80px; }
+      .nav-logo img { height: 80px; }
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    }
+    @media (max-width: 640px) {
+      .legal-section { padding: 50px 0; }
+      .footer-brand img { height: 110px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Two Stars Engineering and Construction Company Logo" />
+      </a>
+      <nav class="nav-links">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#contact" class="btn btn-primary nav-btn">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Terms of Service</h1>
+      <p>Last Updated: October 2023</p>
+    </div>
+  </section>
+
+  <!-- LEGAL CONTENT -->
+  <section class="legal-section">
+    <div class="container legal-content">
+      <p>Welcome to the website of <strong>Two Stars Engineering & Construction Company Pvt. Ltd.</strong> These Terms of Service ("Terms") govern your use of our website and the information provided herein. By accessing or using this website, you agree to be bound by these Terms. If you do not agree with any part of these Terms, please do not use our website.</p>
+      <p>This website is operated in compliance with the laws of the Republic of India.</p>
+
+      <h2>1. Use of Website</h2>
+      <p>You agree to use this website only for lawful purposes. You are prohibited from:</p>
+      <ul>
+        <li>Using the website in any way that violates applicable local, state, national, or international laws.</li>
+        <li>Attempting to gain unauthorized access to our servers, databases, or internal networks.</li>
+        <li>Engaging in any automated data collection (scraping, data mining, etc.) without our express written consent.</li>
+        <li>Transmitting any malicious code, viruses, or harmful software.</li>
+      </ul>
+
+      <h2>2. Intellectual Property Rights</h2>
+      <p>All content on this website, including but not limited to the text, graphics, logos (including the Two Stars logo), images, and software, is the property of Two Stars Engineering & Construction Company Pvt. Ltd. and is protected by Indian copyright and trademark laws. You may not reproduce, distribute, or use our intellectual property without our prior written permission.</p>
+
+      <h2>3. Services and Estimates</h2>
+      <p>The information provided on this website is for general informational purposes only. While we strive to ensure the accuracy of our content, it does not constitute a binding offer, contract, or professional engineering advice.</p>
+      <ul>
+        <li>Any quotes or estimates provided through the contact form are preliminary and subject to further detailed assessment, site evaluation, and a formal written contract.</li>
+        <li>We reserve the right to refuse service or decline project inquiries at our discretion.</li>
+      </ul>
+
+      <h2>4. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by Indian law, Two Stars Engineering & Construction Company Pvt. Ltd. shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising out of your access to, use of, or inability to use this website. This includes, but is not limited to, damages for loss of profits, data, or business interruption.</p>
+      <p>This website is provided on an "as-is" and "as-available" basis. We make no warranties, expressed or implied, regarding the operation or availability of the website.</p>
+
+      <h2>5. Third-Party Links</h2>
+      <p>Our website may contain links to third-party websites or services (such as FormSubmit for our contact forms). We do not control, endorse, or assume responsibility for the content, privacy policies, or practices of any third-party websites.</p>
+
+      <h2>6. Governing Law and Jurisdiction</h2>
+      <p>These Terms and your use of this website are governed by and construed in accordance with the laws of India. Any disputes arising out of or related to these Terms or your use of the website shall be subject to the exclusive jurisdiction of the courts located in <strong>[Insert City/State, e.g., Mumbai, Maharashtra]</strong>.</p>
+
+      <h2>7. Modifications to the Service</h2>
+      <p>We reserve the right to modify, suspend, or discontinue the website (or any part thereof) at any time, with or without notice. We will not be liable to you or any third party for any such modification, suspension, or discontinuance. We may also update these Terms from time to time; your continued use of the website after changes are posted constitutes your acceptance of the new Terms.</p>
+
+      <h2>8. Contact Information</h2>
+      <p>If you have any questions about these Terms of Service, please contact us at:</p>
+      <p>
+        <strong>Two Stars Engineering & Construction Company Pvt. Ltd.</strong><br>
+        Email: aabdullahzeeshan77@gmail.com<br>
+        Phone: (555) 012-3456<br>
+        Address: 123 Industrial Way, Region, India.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="logo.png" alt="Two Stars Logo" />
+          <h4>Two Stars Engineering & Construction Company Pvt. Ltd.</h4>
+          <p>Building your vision, shaping the future.</p>
+          <p>123 Industrial Way · Region · (555) 012‑3456</p>
+          <p>Email: info@twostarsengineering.com</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html">Terms of Service</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Two Stars Engineering & Construction Company Pvt. Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCROLL TO TOP BUTTON -->
+  <button id="scrollTopBtn" title="Go to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.classList.add("show");
+      } else {
+        scrollTopBtn.classList.remove("show");
+      }
+    };
+    scrollTopBtn.addEventListener("click", function() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>

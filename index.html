@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Two Stars Engineering & Construction Company Pvt. Ltd.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* ---------- Design tokens ---------- */
+    :root {
+      --cream: #f8f9fa;
+      --charcoal: #0A2342; /* Deep Navy from logo */
+      --rust: #b58d53;     /* Gold from logo */
+      --rust-light: #d1a865;
+      --gray: #5a6b7c;
+      --border: #d1d5db;
+      --font-display: 'Oswald', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --max-width: 1200px;
+      --radius: 4px;
+    }
+
+    /* Smooth scrolling and offset for sticky navbar */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 130px; 
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; }
+
+    /* ---------- Global Button Hover Effects ---------- */
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .btn-primary { 
+      background: var(--rust); 
+      color: #fff; 
+      box-shadow: 0 4px 6px rgba(181, 141, 83, 0.2);
+    }
+    .btn-primary:hover { 
+      background: var(--rust-light); 
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(181, 141, 83, 0.4);
+    }
+    .btn-primary:disabled {
+      background: var(--gray);
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-outline { 
+      border: 2px solid var(--charcoal); 
+      color: var(--charcoal); 
+      background: transparent;
+    }
+    .btn-outline:hover { 
+      background: var(--charcoal); 
+      color: var(--cream); 
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(10, 35, 66, 0.2);
+    }
+
+    /* ---------- Navbar ---------- */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 0; 
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 110px; 
+    }
+    .nav-logo img {
+      height: 110px; 
+      width: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .nav-logo:hover img {
+      transform: scale(1.02);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    .nav-links a:not(.btn) {
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:not(.btn)::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--rust);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:not(.btn):hover {
+      color: var(--rust);
+    }
+    .nav-links a:not(.btn):hover::after {
+      width: 100%;
+    }
+    .nav-btn { padding: 12px 28px; font-size: 0.85rem; }
+
+    /* ---------- Hero Animations ---------- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--charcoal) 0%, #11345c 100%);
+      color: var(--cream);
+      padding: 140px 0 120px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -10%;
+      top: -20%;
+      width: 800px;
+      height: 800px;
+      background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80') center/cover;
+      opacity: 0.05;
+      border-radius: 50%;
+      animation: pulseBg 10s infinite alternate;
+    }
+    @keyframes pulseBg {
+      0% { transform: scale(1); opacity: 0.05; }
+      100% { transform: scale(1.1); opacity: 0.1; }
+    }
+    
+    .hero .container { position: relative; z-index: 1; max-width: 850px; }
+    
+    .hero h1 { 
+      font-size: clamp(2.8rem, 6vw, 5rem); 
+      margin-bottom: 24px; 
+      opacity: 0;
+      animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    .hero p { 
+      font-size: 1.25rem; 
+      max-width: 680px; 
+      margin-bottom: 40px; 
+      color: #d1d5db; 
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards;
+    }
+    .hero-buttons { 
+      display: flex; 
+      gap: 16px; 
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s forwards;
+    }
+
+    /* ---------- Stats bar ---------- */
+    .stats { background: var(--rust); color: #fff; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      padding: 40px 0;
+    }
+    .stat-item { text-align: center; transition: transform 0.3s ease; }
+    .stat-item:hover { transform: scale(1.05); }
+    .stat-number { font-family: var(--font-display); font-size: 2.8rem; font-weight: 700; display: block; text-shadow: 0 2px 4px rgba(0,0,0,0.1);}
+    .stat-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.9; }
+
+    /* ---------- Section headings ---------- */
+    .section-head { margin-bottom: 48px; }
+    .section-head h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 12px; color: var(--charcoal); }
+    .section-head p { color: var(--gray); max-width: 600px; font-size: 1.1rem;}
+
+    /* ---------- Services grid ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 4px;
+      background: var(--rust);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+    .service-card:hover { 
+      transform: translateY(-8px); 
+      box-shadow: 0 15px 35px rgba(10,35,66,0.08); 
+      border-color: transparent;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; transition: transform 0.3s ease;}
+    .service-card:hover .service-icon { transform: scale(1.15) rotate(5deg); }
+    .service-card h3 { font-size: 1.4rem; margin-bottom: 12px; }
+    .service-card p { font-size: 0.95rem; color: var(--gray); }
+
+    /* ---------- Process steps ---------- */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      counter-reset: step;
+    }
+    .process-step { position: relative; padding-left: 56px; transition: transform 0.3s ease;}
+    .process-step:hover { transform: translateX(5px); }
+    .process-step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0; top: 0;
+      width: 40px; height: 40px;
+      background: var(--charcoal);
+      color: var(--cream);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .process-step:hover::before {
+      background: var(--rust);
+      transform: scale(1.1) rotate(360deg);
+    }
+    .process-step h4 { font-size: 1.1rem; margin-bottom: 6px; }
+    .process-step p { font-size: 0.9rem; color: var(--gray); }
+
+    /* ---------- Projects ---------- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    /* Changed from anchor to div, removed cursor pointer */
+    .project-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: #ccc;
+      transition: box-shadow 0.3s ease;
+    }
+    .project-card:hover { box-shadow: 0 15px 30px rgba(10,35,66,0.2); }
+    .project-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    .project-card:hover img { transform: scale(1.1); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,35,66,0.95) 0%, transparent 70%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 24px; color: #fff;
+      transition: background 0.3s ease;
+    }
+    .project-card:hover .project-overlay { background: linear-gradient(to top, rgba(181, 141, 83, 0.95) 0%, transparent 70%); }
+    .project-overlay h3 { font-size: 1.4rem; transition: transform 0.3s ease; margin-bottom: 4px;}
+    .project-card:hover .project-overlay h3 { transform: translateY(-5px); }
+    
+    /* Project Scope Tag */
+    .project-scope {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--rust-light);
+      transition: color 0.3s ease, transform 0.3s ease;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .project-card:hover .project-scope {
+      color: #fff;
+      transform: translateY(-5px);
+    }
+
+    /* ---------- Testimonials ---------- */
+    .testimonial-block {
+      background: #fff;
+      border-left: 4px solid var(--rust);
+      padding: 40px;
+      border-radius: var(--radius);
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .testimonial-block:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+    .testimonial-block blockquote { font-size: 1.3rem; font-style: italic; margin-bottom: 20px; color: var(--charcoal); line-height: 1.6; }
+    .testimonial-block cite { font-style: normal; font-weight: 600; color: var(--rust); letter-spacing: 1px;}
+
+    /* ---------- Contact form ---------- */
+    .quote-section { background: var(--charcoal); color: var(--cream); }
+    .quote-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+    }
+    .quote-form input, .quote-form textarea, .quote-form select {
+      width: 100%;
+      padding: 16px;
+      background: transparent;
+      border: 1px solid #4a5f7a;
+      border-radius: var(--radius);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .quote-form input:focus, .quote-form textarea:focus, .quote-form select:focus {
+      outline: none;
+      border-color: var(--rust);
+      background: rgba(255,255,255,0.05);
+    }
+    .quote-form input::placeholder, .quote-form textarea::placeholder { color: #9ca3af; }
+    .quote-form textarea { grid-column: 1 / -1; min-height: 140px; resize: vertical; }
+    .quote-form .btn { grid-column: 1 / -1; justify-self: start; margin-top: 10px; padding: 14px 32px;}
+
+    /* ---------- Footer ---------- */
+    .footer { padding: 80px 0 30px; background: #fff; border-top: 1px solid var(--border); font-size: 0.95rem; color: var(--gray); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 50px; }
+    .footer-brand img { height: 140px; margin-bottom: 20px; transition: filter 0.3s ease; }
+    .footer-brand img:hover { filter: brightness(0.8); }
+    .footer-brand h4 { color: var(--charcoal); font-size: 1.2rem; margin-bottom: 12px; }
+    .footer-brand p { margin-bottom: 8px; }
+    .footer-links h4 { color: var(--charcoal); font-size: 1.1rem; margin-bottom: 20px; }
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a { transition: color 0.3s ease, padding-left 0.3s ease; display: inline-block; }
+    .footer-links a:hover { color: var(--rust); padding-left: 5px; }
+    .footer-bottom { text-align: center; padding-top: 24px; border-top: 1px solid var(--border); font-size: 0.85rem; }
+
+    /* ---------- Success Modal ---------- */
+    .modal {
+      display: none; 
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(10, 35, 66, 0.85); 
+      backdrop-filter: blur(5px);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal.show { display: flex; }
+    
+    @keyframes modalPop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .modal-content {
+      background: #fff;
+      padding: 50px 40px;
+      border-radius: var(--radius);
+      text-align: center;
+      max-width: 450px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+      animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      border-top: 5px solid var(--rust);
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--gray);
+      transition: color 0.2s;
+    }
+    .close-btn:hover { color: var(--charcoal); }
+    
+    .modal-icon {
+      width: 80px;
+      height: 80px;
+      background: #e8f5e9;
+      color: #4CAF50;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin: 0 auto 20px auto;
+      font-weight: bold;
+    }
+    
+    .modal-content h2 { color: var(--charcoal); margin-bottom: 12px; font-size: 1.8rem;}
+    .modal-content p { color: var(--gray); margin-bottom: 30px; font-size: 1.05rem;}
+
+    /* ---------- Scroll to Top Button ---------- */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--rust);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 999;
+    }
+    #scrollTopBtn.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    #scrollTopBtn:hover {
+      background-color: var(--charcoal);
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      html { scroll-padding-top: 100px; } 
+      .nav-container { min-height: 80px; }
+      .nav-logo img { height: 80px; }
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 100px 0 80px; }
+      .section { padding: 60px 0; }
+      .stats-grid { padding: 30px 0; }
+      .footer-brand img { height: 110px; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1.1rem; }
+      .modal-content { padding: 40px 20px; }
+      #scrollTopBtn { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="nav-logo">
+        <img src="logo.png" alt="Two Stars Engineering and Construction Company Logo" />
+      </a>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About Us</a>
+        <a href="#contact" class="btn btn-primary nav-btn">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="container">
+      <h1>Delivering Proven Building Solutions</h1>
+      <p>From initial earthwork to final inspection sign-off, Two Stars Engineering & Construction Company Pvt. Ltd. coordinates skilled trades and heavy materials to deliver durable, high-performance facilities on schedule and with uncompromising precision.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        <a href="#projects" class="btn btn-outline" style="border-color: var(--cream); color: var(--cream);">View Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STATS BAR ========== -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item"><span class="stat-number">65+</span><span class="stat-label">Years of Experience</span></div>
+        <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">Quality Control</span></div>
+        <div class="stat-item"><span class="stat-number">0</span><span class="stat-label">Schedule Delays</span></div>
+        <div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label">Site Supervision</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>What We Build</h2>
+        <p>Turnkey general contracting and complex structural builds engineered to withstand high‑demand operations and severe environmental loads.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card"><span class="service-icon">🏗️</span><h3>General Contracting</h3><p>Full‑scope management from pre‑construction through closeout, with strict cost and schedule control.</p></div>
+        <div class="service-card"><span class="service-icon">🏢</span><h3>Commercial Build‑Outs</h3><p>Office, retail, and hospitality interiors delivered to code and on time.</p></div>
+        <div class="service-card"><span class="service-icon">🏭</span><h3>Industrial & Heavy Civil</h3><p>Foundations, structural steel, and heavy‑duty facilities for demanding environments.</p></div>
+        <div class="service-card"><span class="service-icon">📐</span><h3>Pre‑Construction & BIM</h3><p>Cost modeling and clash detection that eliminate surprises before ground breaks.</p></div>
+        <div class="service-card"><span class="service-icon">🔧</span><h3>Renovation & Retrofit</h3><p>Structural upgrades and adaptive reuse for existing buildings.</p></div>
+        <div class="service-card"><span class="service-icon">🛡️</span><h3>Safety & Compliance</h3><p>Rigid jobsite safety programs and full code compliance on every project.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4‑STEP PROCESS ========== -->
+  <section class="section" style="background: #fff;" id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our 4‑Step Process</h2>
+        <p>Discipline at every phase — from first estimate to final handover.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step"><h4>Pre‑Construction</h4><p>Feasibility, budgeting, and BIM coordination.</p></div>
+        <div class="process-step"><h4>Build</h4><p>Site management, trade coordination, and quality control.</p></div>
+        <div class="process-step"><h4>Inspect</h4><p>Third‑party testing, punch lists, and compliance sign‑off.</p></div>
+        <div class="process-step"><h4>Handover</h4><p>As‑built documentation, training, and warranty support.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROJECTS (NO LINKS) ========== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head">
+        <h2>Selected Projects</h2>
+        <p>A snapshot of our capabilities across medium-scale commercial, industrial, and civil infrastructure work.</p>
+      </div>
+      <div class="projects-grid">
+        
+        <!-- Project 1: Commercial Scope (Changed to div) -->
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Commercial Structural Build-Out" />
+          <div class="project-overlay">
+            <span class="project-scope">Medium-Scale Commercial</span>
+            <h3>Commercial Build-Outs & Interiors</h3>
+          </div>
+        </div>
+
+        <!-- Project 2: Industrial Scope (Changed to div) -->
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&q=80" alt="Industrial and Warehouse Facilities" />
+          <div class="project-overlay">
+            <span class="project-scope">Industrial & Logistics</span>
+            <h3>Manufacturing & Warehouse Units</h3>
+          </div>
+        </div>
+
+        <!-- Project 3: Civil Infrastructure Scope (Changed to div) -->
+        <div class="project-card">
+          <img src="https://images.unsplash.com/photo-1541976590-713941681591?w=800&q=80" alt="Civil Infrastructure Works" />
+          <div class="project-overlay">
+            <span class="project-scope">Civil & Structural</span>
+            <h3>Bridges, Roadways & Site Development</h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIAL ========== -->
+  <section class="section" style="background: #fff;">
+    <div class="container">
+      <div class="testimonial-block">
+        <blockquote>“Two Stars delivered our 120,000 sq ft facility three weeks ahead of schedule. Their pre‑construction team caught issues that would have cost us six figures.”</blockquote>
+        <cite>— Director of Facilities, Meridian Logistics</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT FORM ========== -->
+  <section class="section quote-section" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2 style="color: var(--cream);">Contact Us</h2>
+        <p style="color: #b0a89a;">Our estimating team at Two Stars Engineering will review your project parameters and deliver an honest assessment and cost model.</p>
+      </div>
+      
+      <!-- Added action, method, and hidden inputs as a fallback -->
+      <form id="contactForm" class="quote-form" action="https://formsubmit.co/aabdullahzeeshan77@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Contact Form Submission from Two Stars Website">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="?success=true">
+
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="tel" name="phone" placeholder="Phone Number" />
+        <select name="service">
+          <option value="">Select Service</option>
+          <option>General Contracting</option>
+          <option>Commercial Build‑Out</option>
+          <option>Industrial / Heavy Civil</option>
+          <option>Pre‑Construction</option>
+          <option>Renovation</option>
+        </select>
+        <textarea name="message" placeholder="Tell us about your project — scope, timeline, etc." required></textarea>
+        <button type="submit" class="btn btn-primary" id="submitBtn">Submit Request</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <img src="logo.png" alt="Two Stars Engineering and Construction Company Logo" />
+          <h4>Two Stars Engineering & Construction Company Pvt. Ltd.</h4>
+          <p>Building your vision, shaping the future.</p>
+          <p>123 Industrial Way · Region · (555) 012‑3456</p>
+          <p>Email: info@twostarsengineering.com</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="./terms-of-service.html">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Two Stars Engineering & Construction Company Pvt. Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCROLL TO TOP BUTTON ========== -->
+  <button id="scrollTopBtn" title="Go to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <!-- ========== SUCCESS MODAL ========== -->
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div class="modal-icon">✓</div>
+      <h2>Message Sent!</h2>
+      <p>Thank you for contacting Two Stars Engineering. Your message has been successfully delivered. We will get back to you shortly.</p>
+      <button class="btn btn-primary" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    /* --- Contact Form Logic --- */
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const modal = document.getElementById('successModal');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); 
+      
+      const originalBtnText = submitBtn.innerText;
+      submitBtn.innerText = 'Sending...';
+      submitBtn.disabled = true;
+
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      // Fetch request to FormSubmit AJAX endpoint
+      fetch('https://formsubmit.co/ajax/aabdullahzeeshan77@gmail.com', {
+          method: "POST",
+          headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: json
+      })
+      .then(async (res) => {
+          const data = await res.json();
+          if (res.ok) {
+              form.reset();
+              modal.classList.add('show');
+          } else {
+              console.error("FormSubmit Error:", data);
+              alert("There was an issue sending your message. Check the console for details.");
+          }
+      })
+      .catch(error => {
+          console.error("Network Error:", error);
+          alert("Network error. Please check your internet connection and try again.");
+      })
+      .finally(() => {
+          submitBtn.innerText = originalBtnText;
+          submitBtn.disabled = false;
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('show');
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+
+    /* --- Scroll to Top Button Logic --- */
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+    window.onscroll = function() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.classList.add("show");
+      } else {
+        scrollTopBtn.classList.remove("show");
+      }
+    };
+
+    scrollTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  </script>
+
+</body>
+</html>
