@@ -297,7 +297,6 @@
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 24px;
     }
-    /* Changed from anchor to div, removed cursor pointer */
     .project-card {
       position: relative;
       border-radius: var(--radius);
@@ -560,7 +559,7 @@
         <div class="service-card"><span class="service-icon">🏢</span><h3>Commercial Build‑Outs</h3><p>Office, retail, and hospitality interiors delivered to code and on time.</p></div>
         <div class="service-card"><span class="service-icon">🏭</span><h3>Industrial & Heavy Civil</h3><p>Foundations, structural steel, and heavy‑duty facilities for demanding environments.</p></div>
         <div class="service-card"><span class="service-icon">📐</span><h3>Pre‑Construction & BIM</h3><p>Cost modeling and clash detection that eliminate surprises before ground breaks.</p></div>
-        <div class="service-card"><span class="service-icon">🔧</span><h3>Renovation & Retrofit</h3><p>Structural upgrades and adaptive reuse for existing buildings.</p></div>
+        <div class="service-card"><span class="service-icon">🎨</span><h3>Coating & Blasting</h3><p>Surface preparation and protective coating application for industrial structures, ensuring long-term durability against corrosion.</p></div>
         <div class="service-card"><span class="service-icon">🛡️</span><h3>Safety & Compliance</h3><p>Rigid jobsite safety programs and full code compliance on every project.</p></div>
       </div>
     </div>
@@ -582,7 +581,7 @@
     </div>
   </section>
 
-  <!-- ========== PROJECTS (NO LINKS) ========== -->
+  <!-- ========== PROJECTS ========== -->
   <section class="section" id="projects">
     <div class="container">
       <div class="section-head">
@@ -591,7 +590,6 @@
       </div>
       <div class="projects-grid">
         
-        <!-- Project 1: Commercial Scope (Changed to div) -->
         <div class="project-card">
           <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Commercial Structural Build-Out" />
           <div class="project-overlay">
@@ -600,7 +598,6 @@
           </div>
         </div>
 
-        <!-- Project 2: Industrial Scope (Changed to div) -->
         <div class="project-card">
           <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&q=80" alt="Industrial and Warehouse Facilities" />
           <div class="project-overlay">
@@ -609,7 +606,6 @@
           </div>
         </div>
 
-        <!-- Project 3: Civil Infrastructure Scope (Changed to div) -->
         <div class="project-card">
           <img src="https://images.unsplash.com/photo-1541976590-713941681591?w=800&q=80" alt="Civil Infrastructure Works" />
           <div class="project-overlay">
@@ -640,27 +636,32 @@
         <p style="color: #b0a89a;">Our estimating team at Two Stars Engineering will review your project parameters and deliver an honest assessment and cost model.</p>
       </div>
       
-      <!-- Added action, method, and hidden inputs as a fallback -->
-      <form id="contactForm" class="quote-form" action="https://formsubmit.co/aabdullahzeeshan77@gmail.com" method="POST">
+      <!-- Form uses target="hidden_iframe" to bypass CORS and prevent page reload -->
+      <form id="contactForm" class="quote-form" action="https://formsubmit.co/aabdullahzeeshan77@gmail.com" method="POST" target="hidden_iframe">
         <input type="hidden" name="_subject" value="New Contact Form Submission from Two Stars Website">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="?success=true">
-
+        
         <input type="text" name="name" placeholder="Full Name" required />
         <input type="email" name="email" placeholder="Email Address" required />
         <input type="tel" name="phone" placeholder="Phone Number" />
+        
         <select name="service">
           <option value="">Select Service</option>
           <option>General Contracting</option>
           <option>Commercial Build‑Out</option>
           <option>Industrial / Heavy Civil</option>
           <option>Pre‑Construction</option>
-          <option>Renovation</option>
+          <option>Coating & Blasting</option>
         </select>
+        
         <textarea name="message" placeholder="Tell us about your project — scope, timeline, etc." required></textarea>
         <button type="submit" class="btn btn-primary" id="submitBtn">Submit Request</button>
       </form>
+
+      <!-- The hidden iframe that catches the form submission response -->
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
     </div>
   </section>
 
@@ -690,8 +691,9 @@
         <div class="footer-links">
           <h4>Legal</h4>
           <ul>
-            <li><a href="./privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="./terms-of-service.html">Terms of Service</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html">Terms of Service</a></li>
+            <li><a href="#">Careers</a></li>
           </ul>
         </div>
 
@@ -723,64 +725,43 @@
 
   <!-- ========== JAVASCRIPT ========== -->
   <script>
-    /* --- Contact Form Logic --- */
+    /* --- Form & Modal Logic (Iframe Method) --- */
     const form = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     const modal = document.getElementById('successModal');
+    const iframe = document.getElementById('hidden_iframe');
+    let isSubmitting = false;
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault(); 
-      
-      const originalBtnText = submitBtn.innerText;
+    // When the iframe loads the response from FormSubmit, show the modal
+    iframe.onload = function() {
+      if (isSubmitting) {
+        isSubmitting = false;
+        form.reset(); // Clear the form fields
+        submitBtn.innerText = 'Submit Request';
+        submitBtn.disabled = false;
+        modal.classList.add('show'); // Show success modal
+      }
+    };
+
+    // Trigger loading state when form is submitted
+    form.addEventListener('submit', function() {
+      isSubmitting = true;
       submitBtn.innerText = 'Sending...';
       submitBtn.disabled = true;
-
-      const formData = new FormData(form);
-      const object = Object.fromEntries(formData);
-      const json = JSON.stringify(object);
-
-      // Fetch request to FormSubmit AJAX endpoint
-      fetch('https://formsubmit.co/ajax/aabdullahzeeshan77@gmail.com', {
-          method: "POST",
-          headers: { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-          },
-          body: json
-      })
-      .then(async (res) => {
-          const data = await res.json();
-          if (res.ok) {
-              form.reset();
-              modal.classList.add('show');
-          } else {
-              console.error("FormSubmit Error:", data);
-              alert("There was an issue sending your message. Check the console for details.");
-          }
-      })
-      .catch(error => {
-          console.error("Network Error:", error);
-          alert("Network error. Please check your internet connection and try again.");
-      })
-      .finally(() => {
-          submitBtn.innerText = originalBtnText;
-          submitBtn.disabled = false;
-      });
     });
 
+    /* --- Modal Close Logic --- */
     function closeModal() {
       modal.classList.remove('show');
     }
-
     window.onclick = function(event) {
       if (event.target == modal) {
         closeModal();
       }
-    }
+    };
 
     /* --- Scroll to Top Button Logic --- */
     const scrollTopBtn = document.getElementById("scrollTopBtn");
-
     window.onscroll = function() {
       if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
         scrollTopBtn.classList.add("show");
@@ -788,12 +769,8 @@
         scrollTopBtn.classList.remove("show");
       }
     };
-
     scrollTopBtn.addEventListener("click", function() {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   </script>
 
