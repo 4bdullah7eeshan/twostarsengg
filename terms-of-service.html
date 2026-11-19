@@ -7,7 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  
+    <link rel="stylesheet" href="hamburger.css" />
+
   <style>
     /* --- Same Styling Tokens --- */
     :root {
@@ -94,7 +95,7 @@
 <body>
 
   <!-- NAVBAR -->
-  <header class="navbar">
+  <!-- <header class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="nav-logo">
         <img src="logo.png" alt="Two Stars Engineering and Construction Company Logo" />
@@ -106,7 +107,42 @@
         <a href="index.html#contact" class="btn btn-primary nav-btn">Contact Us</a>
       </nav>
     </div>
-  </header>
+  </header> -->
+
+  
+  <header class="navbar">
+  <div class="container nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Two Stars Engineering and Construction Company Logo" />
+    </a>
+    
+    <!-- Desktop Links -->
+    <nav class="nav-links">
+     <a href="index.html#services">Services</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#contact" class="btn btn-primary nav-btn">Contact Us</a>
+    </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    
+<!-- Mobile Menu Overlay (Place this right after the header) -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-links">
+    <a href="index.html#services" class="mobile-link">Services</a>
+    <a href="index.html#projects" class="mobile-link">Projects</a>
+    <a href="index.html#about" class="mobile-link">About Us</a>
+    <a href="index.html#contact" class="btn btn-primary mobile-link">Contact Us</a>
+  </div>
+</div>
+  </div>
+</header>
 
   <!-- PAGE HEADER -->
   <section class="page-header">
@@ -154,15 +190,7 @@
       <h2>7. Modifications to the Service</h2>
       <p>We reserve the right to modify, suspend, or discontinue the website (or any part thereof) at any time, with or without notice. We will not be liable to you or any third party for any such modification, suspension, or discontinuance. We may also update these Terms from time to time; your continued use of the website after changes are posted constitutes your acceptance of the new Terms.</p>
 
-      <h2>8. Contact Information</h2>
-      <p>If you have any questions about these Terms of Service, please contact us at:</p>
-      <p>
-        <strong>Two Stars Engineering & Construction Company Pvt. Ltd.</strong><br>
-        Email: aabdullahzeeshan77@gmail.com<br>
-        Phone: (555) 012-3456<br>
-        Address: 123 Industrial Way, Region, India.
-      </p>
-    </div>
+      
   </section>
 
   <!-- FOOTER -->
@@ -219,5 +247,8 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   </script>
+
+    <script src="hamburger.js"></script>
+
 </body>
 </html>

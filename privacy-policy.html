@@ -7,7 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  
+    <link rel="stylesheet" href="hamburger.css" />
+
   <style>
     /* --- Copying Design Tokens from main page --- */
     :root {
@@ -93,8 +94,8 @@
   </style>
 </head>
 <body>
-
-  <!-- NAVBAR -->
+<!-- 
+  NAVBAR
   <header class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="nav-logo">
@@ -107,7 +108,42 @@
         <a href="index.html#contact" class="btn btn-primary nav-btn">Contact Us</a>
       </nav>
     </div>
-  </header>
+  </header> -->
+
+
+  <header class="navbar">
+  <div class="container nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Two Stars Engineering and Construction Company Logo" />
+    </a>
+    
+    <!-- Desktop Links -->
+    <nav class="nav-links">
+     <a href="index.html#services">Services</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#contact" class="btn btn-primary nav-btn">Contact Us</a>
+    </nav>
+
+    <!-- Mobile Hamburger Button -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    
+<!-- Mobile Menu Overlay (Place this right after the header) -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-links">
+    <a href="index.html#services" class="mobile-link">Services</a>
+    <a href="index.html#projects" class="mobile-link">Projects</a>
+    <a href="index.html#about" class="mobile-link">About Us</a>
+    <a href="index.html#contact" class="btn btn-primary mobile-link">Contact Us</a>
+  </div>
+</div>
+  </div>
+</header
 
   <!-- PAGE HEADER -->
   <section class="page-header">
@@ -159,16 +195,9 @@
       </ul>
       <p>To exercise these rights, please contact us using the details below.</p>
 
-      <h2>7. Grievance Officer</h2>
-      <p>In accordance with the Information Technology Rules, 2021, the name and contact details of the Grievance Officer are provided below:</p>
-      <p>
-        <strong>Name:</strong> [Insert Name of Grievance Officer]<br>
-        <strong>Email:</strong> aabdullahzeeshan77@gmail.com<br>
-        <strong>Phone:</strong> (555) 012-3456<br>
-        <strong>Address:</strong> 123 Industrial Way, Region, India.
-      </p>
+      
 
-      <h2>8. Changes to This Privacy Policy</h2>
+      <h2>7. Changes to This Privacy Policy</h2>
       <p>We may update our Privacy Policy from time to time. Thus, we advise you to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted.</p>
     </div>
   </section>
@@ -227,5 +256,8 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   </script>
+
+  <script src="hamburger.js"></script>
+
 </body>
 </html>
